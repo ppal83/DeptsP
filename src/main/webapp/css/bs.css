@@ -1,0 +1,106 @@
+html {
+    background: url(img/exchange_mod.png) no-repeat center center fixed;
+    webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+h2 {
+    color: blue;
+}
+
+body {
+    padding-top: 3em;
+    padding-bottom: 3em;
+    background: none;
+}
+
+.txt-emph {
+    font-style: italic;
+    font-weight: bold;
+}
+
+table td {
+    padding: 5px;
+}
+
+.cust {
+    width: 100%;
+}
+
+.login-form-caption {
+    font-weight: bold;
+}
+
+.new-user,
+.registered-user {
+    padding-top: 10px;
+}
+
+.new-user-reg,
+.registered-user-log {
+    font-weight: bold;
+    font-style: italic;
+}
+
+.navbar-text-user {
+    color: #fff !important;
+}
+
+.depts-table,
+.empls-table {
+    margin-top: 15px;
+}
+
+.depts-table th,
+.empls-table th {
+    text-align: center;
+    border: 1px solid #269abc !important;
+}
+
+.depts-table td,
+.empls-table td {
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #269abc !important;
+}
+
+.emp-add-btn,
+.dept-add-btn {
+    margin-top: 0.5em;
+    width: 20em;
+}
+
+.btn-back {
+    display: block;
+    width: 10em;
+    margin-top: 0.5em;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background-color: #222;
+    border-color:#080808;
+}
+
+.footer .text-muted {
+    position: absolute;
+    width: 12em;
+    top: 50%;
+    margin-top: -0.625em;
+    left: 50%;
+    margin-left: -6em;
+    text-align: center;
+    color:#9d9d9d;
+}

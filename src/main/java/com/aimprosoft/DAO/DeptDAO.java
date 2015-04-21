@@ -6,11 +6,12 @@ import java.util.List;
 
 public interface DeptDAO {
 
-    int addDept(Dept dept);
-    int deleteDept(Dept dept);
+    void addDept(Dept dept);
+    void deleteDept(Dept dept);
     void updateDept(Dept dept);
-    int deleteDeptById(int id);
     Dept getDeptById(int id);
+    Dept findByName(String name);
+    void deleteDeptById(int id);
     List<Dept> getAllDepts();
 
 }

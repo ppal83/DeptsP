@@ -29,7 +29,7 @@ public class DeptDeleteHandler implements Handler {
         DeptDAO deptDAO = (DeptDAO) DAOs.get("deptDAO");
 
         int id = Integer.parseInt(req.getParameter("deptId"));
-        employeeDAO.deleteEmployeesByDeptId(id);
+        //employeeDAO.deleteEmployeesByDeptId(id);
         deptDAO.deleteDeptById(id);
         List<Dept> deptsList = deptDAO.getAllDepts();
         req.setAttribute("deptsList", deptsList);

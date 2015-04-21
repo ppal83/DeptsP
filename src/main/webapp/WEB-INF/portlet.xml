@@ -9,11 +9,6 @@
 		<portlet-name>DeptsMVC</portlet-name>
 		<display-name>DeptsMVC</display-name>
 		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
-		<init-param>
-			<name>view-jsp</name>
-			<value>/view.jsp</value>
-		</init-param>
-		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>

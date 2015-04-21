@@ -32,6 +32,7 @@
         <td><label for="name" class="form-control">Name</label></td>
         <td><input type="text" id="name" name="<portlet:namespace/>name" class="form-control" value="${dept.name}" /></td>
         <td><span class="error">${errorsBean.name}</span></td>
+        <td><input type="hidden" id="id" name="<portlet:namespace/>id" value="0" /></td>
       </tr>
 
       <tr>

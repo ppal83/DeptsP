@@ -25,7 +25,7 @@ public class EmployeeDeleteHandler implements Handler {
         EmployeeDAO employeeDAO = (EmployeeDAO) DAOs.get("employeeDAO");
 
         int id = Integer.parseInt(req.getParameter("id"));
-        int deptId = employeeDAO.getEmployeeById(id).getDeptId();
+        //int deptId = employeeDAO.getEmployeeById(id).getDeptId();
         employeeDAO.deleteEmployeeById(id);
 
         logger.info("Forwarding to EmployeeListHandler");
@@ -34,7 +34,7 @@ public class EmployeeDeleteHandler implements Handler {
         PortletURL redirectURL = PortletURLFactoryUtil.create(PortalUtil.getHttpServletRequest(req),
                 portletName, themeDisplay.getLayout().getPlid(), PortletRequest.RENDER_PHASE);
         redirectURL.setParameter("jspPage", "/WEB-INF/views/employees.jsp");
-        redirectURL.setParameter("deptId", "" + deptId);
+        //redirectURL.setParameter("deptId", "" + deptId);
         redirectURL.setParameter("action", "/emplist.html");
         redirectURL.setWindowState(WindowState.MAXIMIZED);
         ((ActionResponse) resp).sendRedirect(redirectURL.toString());

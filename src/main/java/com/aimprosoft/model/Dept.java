@@ -1,6 +1,7 @@
 package com.aimprosoft.model;
 
 import org.hibernate.annotations.*;
+import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
@@ -22,7 +23,7 @@ public class Dept {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "dept")
     @Fetch(FetchMode.SELECT)
-    @Cascade(org.hibernate.annotations.CascadeType.DETACH)
+    @Cascade(CascadeType.DELETE)
     @OrderBy("id")
     private Set<Employee> emps = new HashSet<>(0);
 

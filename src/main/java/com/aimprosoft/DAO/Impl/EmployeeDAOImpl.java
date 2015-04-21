@@ -1,9 +1,7 @@
 package com.aimprosoft.DAO.Impl;
 
 import com.aimprosoft.DAO.EmployeeDAO;
-import com.aimprosoft.connection.DBCPDataSourceFactory;
 import com.aimprosoft.model.Employee;
-import com.aimprosoft.util.JDBCUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -11,15 +9,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-@Repository
+@Repository("employeeDAO")
 public class EmployeeDAOImpl implements EmployeeDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(EmployeeDAOImpl.class);

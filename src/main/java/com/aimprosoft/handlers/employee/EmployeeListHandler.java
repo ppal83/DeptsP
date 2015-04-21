@@ -30,8 +30,8 @@ public class EmployeeListHandler implements Handler {
         Dept dept = deptDAO.getDeptById(id);
         req.setAttribute("dept", dept);
 
-        List<Employee> empsList = employeeDAO.getEmployeesByDeptId(id);
-        req.setAttribute("empsList", empsList);
+        //List<Employee> empsList = employeeDAO.getEmployeesByDeptId(id);
+        //req.setAttribute("empsList", empsList);
 
         logger.info("Forwarding to employees.jsp");
 

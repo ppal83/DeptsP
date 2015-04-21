@@ -16,6 +16,6 @@ public class EmployeeFromReq {
         int deptId = Integer.parseInt(req.getParameter("deptId"));
         int salary = Integer.parseInt( req.getParameter("salary") );
 
-        return new Employee(name, birthDate, hireDate, address, email, deptId, salary);
+        return null; // new Employee(name, birthDate, hireDate, address, email, deptId, salary);
     }
 }

@@ -10,9 +10,9 @@ public interface EmployeeDAO {
     void deleteEmployee(Employee emp);
     void updateEmployee(Employee emp);
     void deleteEmployeeById(int id);
-    void deleteEmployeesByDeptId(int deptId);
     Employee getEmployeeById(int id);
-    List<Employee> getEmployeesByDeptId(int deptId);
     List<Employee> getAllEmployees();
+    Employee findByName(String username);
+    Employee findByEmail(String email);
 
 }

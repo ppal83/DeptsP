@@ -6,17 +6,21 @@
 		xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd">
 
 	<portlet>
-		<portlet-name>DeptsPortlet</portlet-name>
-		<display-name>DeptsPortlet</display-name>
-		<portlet-class>com.aimprosoft.DispatcherPortlet</portlet-class>
+		<portlet-name>DeptsMVC</portlet-name>
+		<display-name>DeptsMVC</display-name>
+		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/view.jsp</value>
+		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
 		<portlet-info>
-			<title>OlololoDeptsPortlet</title>
-			<short-title>DeptsPortlet</short-title>
-			<keywords>DeptsPortlet</keywords>
+			<title>DeptsMVC</title>
+			<short-title>DeptsMVC</short-title>
+			<keywords>DeptsMVC</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>
@@ -31,12 +35,5 @@
 			<role-name>user</role-name>
 		</security-role-ref>
 	</portlet>
-
-	<container-runtime-option>
-		<name>javax.portlet.actionScopedRequestAttributes</name>
-		<value>true</value>
-		<value>numberOfCachedScopes</value>
-		<value>10</value>
-	</container-runtime-option>
 
 </portlet-app>

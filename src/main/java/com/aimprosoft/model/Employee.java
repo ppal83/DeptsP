@@ -1,37 +1,55 @@
 package com.aimprosoft.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "employee")
 public class Employee {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @Column(name = "name")
     private String name;
 
+    @DateTimeFormat(pattern="yyyy-MMMM-dd")
+    @Temporal(TemporalType.DATE)
+    @Column(name = "birth_date")
     private Date birthDate;
 
+    @DateTimeFormat(pattern="yyyy-MMMM-dd")
+    @Temporal(TemporalType.DATE)
+    @Column(name = "hire_date")
     private Date hireDate;
 
+    @Column(name = "address")
     private String address;
 
+    @Column(name="email")
     private String email;
 
-    private int deptId;
+    @ManyToOne
+    @JoinColumn(name = "dept_id")
+    private Dept dept;
 
-    private int salary;
+    @Column(name = "salary")
+    private Integer salary;
 
     public Employee() {
 
     }
 
     public Employee(String name, Date birthDate, Date hireDate,
-                    String address, String email, int deptId, int salary) {
+                    String address, String email, Dept dept, int salary) {
         this.name = name;
         this.birthDate = birthDate;
         this.hireDate = hireDate;
         this.address = address;
         this.email = email;
-        this.deptId = deptId;
+        this.dept = dept;
         this.salary = salary;
     }
 
@@ -83,19 +101,19 @@ public class Employee {
         this.email = email;
     }
 
-    public int getDeptId() {
-        return deptId;
+    public Dept getDept() {
+        return dept;
     }
 
-    public void setDeptId(int deptId) {
-        this.deptId = deptId;
+    public void setDept(Dept dept) {
+        this.dept = dept;
     }
 
-    public int getSalary() {
+    public Integer getSalary() {
         return salary;
     }
 
-    public void setSalary(int salary) {
+    public void setSalary(Integer salary) {
         this.salary = salary;
     }
 
@@ -108,7 +126,7 @@ public class Employee {
                 ", hireDate=" + hireDate +
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
-                ", deptId=" + deptId +
+                ", dept" + dept +
                 ", salary=" + salary +
                 '}';
     }

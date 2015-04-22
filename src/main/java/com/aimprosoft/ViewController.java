@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -123,7 +124,7 @@ public class ViewController {
 
     @RequestMapping(params = "action=/deptadd.html")
     public void actionDeptAdd(@RequestParam("id") int id,
-                              @ModelAttribute("dept") Dept dept, ActionResponse resp) {
+                    @ModelAttribute("dept") @Validated Dept dept, ActionResponse resp) {
         if (id != 0) {
             deptService.updateDept(dept);
         } else {

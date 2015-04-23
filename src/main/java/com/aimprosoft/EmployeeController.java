@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.portlet.*;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Set;
 
 @Controller
@@ -45,6 +48,8 @@ public class EmployeeController {
 
     @InitBinder("employee")
     public void initBinder(WebDataBinder binder) {
+        CustomDateEditor editor = new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true);
+        binder.registerCustomEditor(Date.class, editor);
         binder.setValidator(validator);
     }
 
@@ -94,8 +99,8 @@ public class EmployeeController {
     public String renderEmpAddForm(Model model) {
         logger.info("Rendering emp_add.jsp");
 
-        //if attribute "emp" exist in model after actionDeptAddForm(there were some errors)
-        //return it to page displaying errors, else return new Dept()
+        //if attribute "emp" exist in model after actionEmployeeAddForm(there were some errors)
+        //return it to page displaying errors, else return new Employee
         Employee emp;
         if (model.containsAttribute("employee")) {
             emp = (Employee) model.asMap().get("employee");
@@ -118,8 +123,8 @@ public class EmployeeController {
 
     @RequestMapping(params = "action=/empadd.html")
     public void actionDeptAdd(@ModelAttribute("employee") @Validated Employee emp,
-                              BindingResult bindingResult, ActionRequest req,
-                              ActionResponse resp) throws IOException, WindowStateException {
+                              BindingResult bindingResult, @RequestParam("deptId") int id,
+                              ActionRequest req, ActionResponse resp) throws IOException, WindowStateException {
         logger.info("Received employee bean from form: " + emp);
 
         if (bindingResult.hasErrors()) {
@@ -128,6 +133,7 @@ public class EmployeeController {
             resp.setRenderParameter("action", "/empadd_form.html");
         } else {
             logger.info("Validation succesfull " + emp);
+            emp.setDept(deptService.getDeptById(id));
             employeeService.addEmloyee(emp);
 
             logger.info("Redirecting to employees.jsp");
@@ -136,6 +142,64 @@ public class EmployeeController {
             PortletURL redirectURL = PortletURLFactoryUtil.create(PortalUtil.getHttpServletRequest(req),
                     portletName, themeDisplay.getLayout().getPlid(), PortletRequest.RENDER_PHASE);
             redirectURL.setParameter("jspPage", "/WEB-INF/views/depts.jsp");
+            redirectURL.setParameter("action", "/emplist.html");
+            redirectURL.setParameter("deptId", "" + emp.getDept().getId());
+            redirectURL.setWindowState(WindowState.MAXIMIZED);
+            resp.sendRedirect(redirectURL.toString());
+            logger.info("Redirect link generated" + redirectURL.toString());
+        }
+    }
+
+    //-------------------------------empedit_form.html-----------------------------------------
+
+    @RequestMapping(params = "action=/empedit_form.html")
+    public String renderEmpEditForm(@RequestParam("id") int id, Model model) {
+        logger.info("Rendering emp_edit.jsp");
+
+        //if attribute "emp" exist in model after actionDeptEditForm(there were some errors)
+        //return it to page displaying errors, else return employee by id
+        Employee emp;
+        if (model.containsAttribute("employee")) {
+            emp = (Employee) model.asMap().get("employee");
+        } else {
+            emp = employeeService.getEmployeeById(id);
+        }
+        model.addAttribute(emp);
+        model.addAttribute("deptsList", deptService.getAllDepts());
+
+        return "employee_edit";
+    }
+
+    @RequestMapping(params = "action=/empedit_form.html")
+    public void actionEmpEditForm(@RequestParam("id") int id, ActionResponse resp) {
+        resp.setRenderParameter("id", "" + id);
+        resp.setRenderParameter("action", "/empedit_form.html");
+    }
+
+    //-------------------------------empedit.html-----------------------------------------
+
+    @RequestMapping(params = "action=/empedit.html")
+    public void actionDeptEdit(@ModelAttribute("employee") @Validated Employee emp,
+                              BindingResult bindingResult, @RequestParam("deptId") int id,
+                              ActionRequest req, ActionResponse resp) throws IOException, WindowStateException {
+        logger.info("Received employee bean from form: " + emp);
+
+        if (bindingResult.hasErrors()) {
+            logger.info("Validation failed. BindingResult: " + bindingResult);
+            logger.info("Returning current page");
+            resp.setRenderParameter("id", "" + emp.getId());
+            resp.setRenderParameter("action", "/empedit_form.html");
+        } else {
+            logger.info("Validation succesfull " + emp);
+            emp.setDept(deptService.getDeptById(id));
+            employeeService.updateEmployee(emp);
+
+            logger.info("Redirecting to employees.jsp");
+            ThemeDisplay themeDisplay = (ThemeDisplay) req.getAttribute(WebKeys.THEME_DISPLAY);
+            String portletName = (String) req.getAttribute(WebKeys.PORTLET_ID);
+            PortletURL redirectURL = PortletURLFactoryUtil.create(PortalUtil.getHttpServletRequest(req),
+                    portletName, themeDisplay.getLayout().getPlid(), PortletRequest.RENDER_PHASE);
+            redirectURL.setParameter("jspPage", "/WEB-INF/views/employees.jsp");
             redirectURL.setParameter("action", "/emplist.html");
             redirectURL.setParameter("deptId", "" + emp.getDept().getId());
             redirectURL.setWindowState(WindowState.MAXIMIZED);

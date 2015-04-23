@@ -27,9 +27,8 @@
     </bean>
 
     <bean id="messageSource"
-          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+          class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="basename" value="message" />
-        <property name="defaultEncoding" value="UTF-8" />
     </bean>
 
     <!-- Hibernate 4 SessionFactory Bean definition -->
@@ -37,15 +36,18 @@
     <bean id="hibernate4AnnotatedSessionFactory"
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
+        <property name="annotatedClasses">
+            <list>
+                <value>com.aimprosoft.model.Dept</value>
+                <value>com.aimprosoft.model.Employee</value>
+            </list>
+        </property>
         <property name="hibernateProperties">
-            <props></props>
-            <!--
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
             </props>
-            -->
         </property>
     </bean>
 

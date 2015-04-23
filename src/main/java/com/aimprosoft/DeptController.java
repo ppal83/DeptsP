@@ -6,6 +6,7 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletURLFactoryUtil;
+import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,7 @@ public class DeptController {
         binder.setValidator(validator);
     }
 
-    @RequestMapping  // default (action=index)
+    @RequestMapping
     public String renderIndexPage(Model model) {
         model.addAttribute("deptsList", deptService.getAllDepts());
 
@@ -196,7 +197,5 @@ public class DeptController {
             logger.info("Redirect link generated" + redirectURL.toString());
         }
     }
-
-
 
 }

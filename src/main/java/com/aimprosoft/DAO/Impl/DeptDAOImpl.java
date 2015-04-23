@@ -66,7 +66,6 @@ public class DeptDAOImpl implements DeptDAO {
     @Override
     public List<Dept> getAllDepts() {
         Session session = sessionFactory.getCurrentSession();
-        //List<Dept> deptsList = session.createCriteria(Dept.class).list();
         Criteria cr = session.createCriteria(Dept.class);
         cr.addOrder(Order.asc("id"));
         List<Dept> deptsList = cr.list();

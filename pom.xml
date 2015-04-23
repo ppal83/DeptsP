@@ -15,10 +15,10 @@
 
 		<!-- Liferay -->
 		<liferay.version>6.2.2</liferay.version>
-		<liferay.auto.dir>/home/ppal/App/liferay-portal-6.2-ce-ga3</liferay.auto.dir>
+		<liferay.auto.dir>/home/ppal/app/Lifersy/liferay-portal-6.2-ce-ga4</liferay.auto.dir>
 		<liferay.lib.dir>${tomcat.dir}/webapps/ROOT/WEB-INF/lib</liferay.lib.dir>
 		<liferay.maven.plugin.version>6.2.2</liferay.maven.plugin.version>
-		<deploy.dir>/home/ppal/App/liferay-portal-6.2-ce-ga3/deploy</deploy.dir>
+		<deploy.dir>/home/ppal/app/Liferay/liferay-portal-6.2-ce-ga4/deploy</deploy.dir>
 		<project.home>/home/ppal/IdeaProjects/DeptsP</project.home>
 		<tomcat.dir>${liferay.auto.dir}/tomcat-7.0.42</tomcat.dir>
 		<tomcat.lib.dir>${tomcat.dir}/lib/ext</tomcat.lib.dir>
@@ -105,13 +105,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!--
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		-->
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc-portlet</artifactId>

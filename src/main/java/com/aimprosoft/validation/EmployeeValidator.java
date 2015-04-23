@@ -49,12 +49,12 @@ public class EmployeeValidator implements Validator {
                     "Cannot change to existing employee email");
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "empName.required");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "birthDate", "birthDate.required");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "hireDate", "hireDate.required");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address", "address.required");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "email.required");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "salary", "salary.required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "empName.required", "Employee name is required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "birthDate", "birthDate.required","Birthday date is required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "hireDate", "hireDate.required", "Hire date is required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address", "address.required", "Employee address is required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "email.required", "Employee email is required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "salary", "salary.required", "Wrong salary");
 
     }
 }

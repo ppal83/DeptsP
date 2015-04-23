@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="springForm"%>
 
 <!DOCTYPE html>
 
@@ -24,20 +25,21 @@
 
   <h2>Edit dept</h2>
 
-  <form class="dept-edit-form" method="post">
+  <springForm:form cssClass="dept-add-form" method="post" commandName="dept">
 
-    <table class="dept-edit-table">
+    <table class="dept-add-table">
 
       <tr>
-        <td><label for="id" class="form-control">ID</label></td>
-        <td><input type="text" id="id" name="<portlet:namespace/>id" class="form-control"
-                   readonly value="${dept.id}" /></td>
+        <td><springForm:label path="id">ID</springForm:label></td>
+        <td><springForm:input id="id" path="id" readonly="true" disabled="true"/></td>
+        <td><springForm:errors path="id" cssClass="error" /></td>
+        <td><springForm:hidden path="id" /></td>
       </tr>
 
       <tr>
-        <td><label for="name" class="form-control">Name</label></td>
-        <td><input type="text" id="name" name="<portlet:namespace/>name" class="form-control" value="${dept.name}" /></td>
-        <td><span class="error">${errorsBean.name}</span></td>
+        <td><springForm:label path="name">Name</springForm:label></td>
+        <td><springForm:input id="name" path="name" /></td>
+        <td><springForm:errors path="name" cssClass="error" /></td>
       </tr>
 
       <tr>
@@ -56,7 +58,7 @@
 
     </table>
 
-  </form>
+  </springForm:form>
 
 </div>
 

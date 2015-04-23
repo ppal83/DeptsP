@@ -20,11 +20,13 @@ public class DeptValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return clazz == Dept.class;
+        //return clazz == Dept.class;
+        return Dept.class.isAssignableFrom(clazz);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
+        logger.info("Validating dept bean");
 
         Dept formDept = (Dept) target;
         Dept dbDeptByName = deptService.findByName(formDept.getName());
@@ -40,6 +42,7 @@ public class DeptValidator implements Validator {
                     "Cannot change to existing dept name");
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "deptName.required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name",
+                "deptName.required", "Dept name is required");
     }
 }

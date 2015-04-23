@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="portlet" uri="http://java.sun.com/portlet" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="springForm"%>
 
 <!DOCTYPE html>
 
@@ -24,15 +25,14 @@
 
   <h2>Add dept</h2>
 
-  <form class="dept-add-form" method="post">
+  <springForm:form cssClass="dept-add-form" method="post" commandName="dept">
 
     <table class="dept-add-table">
 
       <tr>
-        <td><label for="name" class="form-control">Name</label></td>
-        <td><input type="text" id="name" name="<portlet:namespace/>name" class="form-control" value="${dept.name}" /></td>
-        <td><span class="error">${errorsBean.name}</span></td>
-        <td><input type="hidden" id="id" name="<portlet:namespace/>id" value="0" /></td>
+        <td><springForm:label path="name">Name</springForm:label></td>
+        <td><springForm:input path="name" /></td>
+        <td><springForm:errors path="name" cssClass="error" /></td>
       </tr>
 
       <tr>
@@ -51,7 +51,8 @@
 
     </table>
 
-  </form>
+  </springForm:form>
+
 
 </div>
 
